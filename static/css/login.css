@@ -1,0 +1,18 @@
+form{
+    margin-top: 5px;
+}
+
+button{
+    width: 110px;
+}
+
+label{
+    margin-top: 5px;
+    color: red;
+
+}
+
+span{
+    background-color: red;
+    margin-top: 5px;
+}

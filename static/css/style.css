@@ -1,0 +1,23 @@
+body{
+    background-color: white;
+    width: 1300px;
+    height: 500px;
+    margin: auto;
+    text-align: center;
+
+}
+
+img{
+    object-fit:contain;
+    width:1300px;
+    height:500px;
+
+}
+
+.form-group{
+    width: 500px;
+    margin:auto;
+    padding-bottom: 10px;
+
+}
+
