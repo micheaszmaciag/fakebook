@@ -6,8 +6,15 @@
 {% endblock %}
 
 {% block body %}
-    <div>
-        {{ super() }}
-    </div>
-    <label> {{ text }} </label>
+    {% if session.name %}
+        <div>
+            {{ super() }}
+        </div>
+        <label> {{ text }} </label>
+        <a href="/logout">logout</a>
+    {% else %}
+        <p>You are not Register</p>
+    {% endif %}
+
+
 {% endblock %}
