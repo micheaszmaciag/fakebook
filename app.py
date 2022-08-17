@@ -58,7 +58,7 @@ def registration():
             }
 
             with open('accounts.json', 'w') as jf:
-                json.dump(accounts, jf)
+                json.dump(accounts, jf, indent=4)
 
             return render_template('registration.html', f_pass=password, s_pass=sec_password,
                                    warning='The passwords are not the same')
@@ -73,8 +73,23 @@ def registration():
 @app.route('/profile/', methods=['GET', 'POST'])
 def profile():
     if not session.get("name"):
-        return render_template('profile.html')
-    return render_template('profile.html')
+        return render_template('login.html')
+    else:
+        account = str(session.get("name"))
+        with open('accounts.json', 'r') as file:
+            account_details = json.load(file)
+
+            for k, v in account_details.items():
+                if k == account:
+                    user_name = v['user_name']
+                    first_name = v['first_name']
+                    last_name = v['last_name']
+                    email = v['email']
+                    describe = v['describe']
+                    date_of_birth = v['date_of_birth']
+
+
+            return render_template('profile.html', user_name=user_name, first_name=first_name, last_name=last_name, email=email, describe=describe, date_of_birth=date_of_birth)
 
 
 @app.route('/logout/')
@@ -102,6 +117,8 @@ def create_profile():
         email = request.form['email']
         text_area = request.form['describe']
         date_of_birth = request.form['date_birth']
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
 
         with open('accounts.json', 'r', errors='ignore') as f:
             file = json.load(f)
@@ -116,12 +133,14 @@ def create_profile():
                 "login": login,
                 "password": password,
                 "user_name": user_name,
+                "first_name": first_name,
+                "last_name": last_name,
                 "email": email,
                 "describe": text_area,
                 "date_of_birth": date_of_birth
             }
         with open('accounts.json', 'w') as f:
-            json.dump(file, f)
+            json.dump(file, f, indent=4)
 
     if request.method == 'GET':
         with open('accounts.json', 'r') as f:

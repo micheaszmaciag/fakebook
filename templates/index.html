@@ -11,8 +11,9 @@
 </head>
 <body>
 {% block body %}
-         <img src="{{ url_for('static', filename='fakebook.jpg') }}" alt="">
-
+        <div>
+            <img class= 'main_img' src="{{ url_for('static', filename='fakebook.jpg') }}" alt="">
+        </div>
 {% endblock %}
 </body>
 </html>
