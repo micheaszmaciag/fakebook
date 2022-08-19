@@ -12,29 +12,56 @@
 </div>
 
 {% if session.name %}
-<h2>Hello {{ user }}</h2>
+<h2>Hello {{ login }}</h2>
 <form action="" method="post">
     <div class="form-row">
         <div class="form-group col-md-6">
-            <input name="user_name" type="text" class="form-control" id="inputEmail4" placeholder="Your user name here">
+            {% if user_name %}
+                <input name="user_name" type="text" class="form-control" id="inputEmail4" placeholder= '{{ user_name }}'>
+            {% else %}
+                <input name="user_name" type="text" class="form-control" id="inputEmail5" placeholder="Your user name here">
+            {% endif %}
         </div>
         <div class="form-group col-md-6">
-            <input name="email" type="email" class="form-control" id="inputPassword4" placeholder="Your email here">
+            {% if email %}
+                <input name="email" type="email" class="form-control" id="inputPassword4" placeholder="{{ email }}">
+            {% else %}
+                <input name="email" type="email" class="form-control" id="inputPassword5" placeholder="Your email here">
+            {% endif %}
         </div>
     </div>
     <div class="form-group">
-         <input name="first_name" type="text" class="form-control" id="first_name" placeholder="First name">
+        {% if first_name %}
+            <input name="first_name" type="text" class="form-control" id="first_name" placeholder="{{ first_name }}">
+        {% else %}
+            <input name="first_name" type="text" class="form-control" id="first_name1" placeholder="First name">
+        {% endif %}
     </div>
     <div class="form-group">
-        <input name="last_name" type="text" class="form-control" id="last_name" placeholder="Last name">
+        {% if last_name %}
+           <input name="last_name" type="text" class="form-control" id="last_name" placeholder="{{ last_name }}">
+        {% else %}
+            <input name="last_name" type="text" class="form-control" id="last_name1" placeholder="Last name">
+        {% endif %}
+
     </div>
     <div class="form-group">
-        <textarea name="describe" class="form-control rounded-0" id="describe" rows="10" placeholder="Describe your self"></textarea>
+        {% if describe %}
+            <textarea name="describe" class="form-control rounded-0" id="describe" rows="10" placeholder="{{ describe }}"></textarea>
+        {% else %}
+            <textarea name="describe" class="form-control rounded-0" id="describe1" rows="10" placeholder="Describe your self"></textarea>
+        {% endif %}
     </div>
     <div class="form-group">
-        <input name="date_birth" type="text" class="form-control" id="inputAddress2" placeholder="Date of your birth example 10/05/2050">
+        {% if date_of_birth %}
+            <input name="date_birth" type="text" class="form-control" id="inputAddress2" placeholder="{{ date_of_birth }}">
+        {% else %}
+            <input name="date_birth" type="text" class="form-control" id="inputAddress3" placeholder="Date of your birth example 10/05/2050">
+        {% endif %}
     </div>
+    <a href="/profile"><button type="button" class="btn btn-danger">Go back</button></a>
     <button type="submit" class="btn btn-primary">Save</button>
+
 </form>
 {% endif %}
 {{ text }}

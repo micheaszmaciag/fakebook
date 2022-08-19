@@ -88,8 +88,8 @@ def profile():
                     describe = v['describe']
                     date_of_birth = v['date_of_birth']
 
-
-            return render_template('profile.html', user_name=user_name, first_name=first_name, last_name=last_name, email=email, describe=describe, date_of_birth=date_of_birth)
+            return render_template('profile.html', user_name=user_name, first_name=first_name, last_name=last_name,
+                                   email=email, describe=describe, date_of_birth=date_of_birth)
 
 
 @app.route('/logout/')
@@ -142,14 +142,21 @@ def create_profile():
         with open('accounts.json', 'w') as f:
             json.dump(file, f, indent=4)
 
-    if request.method == 'GET':
+    elif request.method == 'GET':
         with open('accounts.json', 'r') as f:
             account = json.load(f)
             for key, value in account.items():
                 if session['name'] == key:
-                    data = value['login']
+                    login = value['login']
+                    user_name = value['user_name']
+                    first_name = value['first_name']
+                    last_name = value['last_name']
+                    email = value['email']
+                    describe = value['describe']
+                    date_of_birth = value['date_of_birth']
 
-        return render_template('create_profile.html', user=data)
+        return render_template('create_profile.html', user_name=user_name, first_name=first_name, last_name=last_name,
+                               email=email, describe=describe, date_of_birth=date_of_birth, login=login)
 
     return render_template('create_profile.html')
 
